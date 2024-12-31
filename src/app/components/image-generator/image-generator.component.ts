@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, Component } from '@angular/core';
 import { MonsterApiService } from '../../services/monster-api.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -10,7 +10,7 @@ import { FormsModule } from '@angular/forms';
   standalone: true,
   imports: [CommonModule, FormsModule],
 })
-export class ImageGeneratorComponent {
+export class ImageGeneratorComponent implements AfterViewInit{
   prompt: string = '';
   negprompt: string = 'deformed, bad anatomy, disfigured, poorly drawn face'; // Default negprompt
   aspectRatio: string = 'square'; // Default aspect ratio
@@ -101,5 +101,14 @@ export class ImageGeneratorComponent {
     }
   }
 
+
+  ngAfterViewInit(): void {
+    try {
+      (window as any).adsbygoogle = (window as any).adsbygoogle || [];
+      (window as any).adsbygoogle.push({});
+    } catch (e) {
+      console.error('AdSense error:', e);
+    }
+  }
 }
 

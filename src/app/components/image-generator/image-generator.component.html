@@ -47,20 +47,19 @@
                 <!-- New negprompt field -->
                 <div class="flex justify-between items-center">
                     <label for="negprompt" class="text-[#d1d5db] w-1/3 text-left">Prompt:</label>
-                    
+
                     <textarea id="negprompt" [(ngModel)]="negprompt"
-                      placeholder="Describe what to avoid in the image..."
-                      class="w-2/3 p-3 bg-[#1f2937] border border-[#374151] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#facc15] transition duration-300 text-[#e5e7eb]"
-                      rows="2" [disabled]="isLoading"></textarea>
-                  </div>
-                  
-                  <!-- Button to trigger negative prompt generation manually -->
-                  <button (click)="generateNegativePrompt()" 
-                          [disabled]="isLoading"
-                          class="mt-4 px-6 py-2 bg-[#facc15] text-[#1a202c] font-semibold rounded-xl transition duration-300 hover:bg-[#f59e0b]">
+                        placeholder="Describe what to avoid in the image..."
+                        class="w-2/3 p-3 bg-[#1f2937] border border-[#374151] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#facc15] transition duration-300 text-[#e5e7eb]"
+                        rows="2" [disabled]="isLoading"></textarea>
+                </div>
+
+                <!-- Button to trigger negative prompt generation manually -->
+                <button (click)="generateNegativePrompt()" [disabled]="isLoading"
+                    class="mt-4 px-6 py-2 bg-[#facc15] text-[#1a202c] font-semibold rounded-xl transition duration-300 hover:bg-[#f59e0b]">
                     Generate Prompt
-                  </button>
-                  
+                </button>
+
 
                 <!-- New steps field -->
                 <div class="flex justify-between items-center">
@@ -83,6 +82,7 @@
                         <p>Your generated image will appear here</p>
                     </div>
                 </ng-container>
+
 
                 <ng-template #imageBlock>
                     <div class="relative">
@@ -143,6 +143,10 @@
                         class="w-16 h-16 border-4 border-transparent border-t-4 border-[#facc15] rounded-full animate-spin">
                     </div>
                     <p class="text-[#d1d5db]">Generating your masterpiece... Hang tight!</p>
+                </div>
+                <div class="ad-container">
+                    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4882959606926736"
+                        data-ad-slot="1234567890" data-ad-format="auto"></ins>
                 </div>
             </div>
         </div>
