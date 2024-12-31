@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { ImageGeneratorComponent } from "./components/image-generator/image-generator.component";
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [ ImageGeneratorComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
