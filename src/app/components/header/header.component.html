@@ -1,0 +1,35 @@
+<div class="bg-[#1a202c] text-[#e5e7eb]">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center py-4">
+            <!-- Logo -->
+            <div class="text-2xl font-bold text-[#f59e0b]">
+                <a routerLink="/">aigenimage</a>
+            </div>
+            <!-- Desktop Menu -->
+            <nav class="hidden md:flex space-x-8 text-[#d1d5db]">
+                <a routerLink="/" class="hover:text-[#facc15] transition duration-300 cursor-pointer">Home</a>
+                <a routerLink="/how-it-works" class="hover:text-[#facc15] transition duration-300 cursor-pointer">How It Works</a>
+                <a routerLink="/faq" class="hover:text-[#facc15] transition duration-300 cursor-pointer">FAQ</a>
+            </nav>
+            <!-- Mobile Menu Button -->
+            <div class="md:hidden">
+                <button (click)="toggleMenu()" class="text-[#f59e0b] focus:outline-none">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div *ngIf="isMenuOpen" class="md:hidden flex flex-col space-y-2 py-4 bg-[#2d3748] rounded-lg">
+            <a routerLink="/" class="block px-4 py-2 hover:bg-[#374151] hover:text-[#facc15] transition duration-300 cursor-pointer">
+                Home
+            </a>
+            <a routerLink="/how-it-works" class="block px-4 py-2 hover:bg-[#374151] hover:text-[#facc15] transition duration-300 cursor-pointer">
+                How It Works
+            </a>
+            <a routerLink="/faq" class="block px-4 py-2 hover:bg-[#374151] hover:text-[#facc15] transition duration-300 cursor-pointer">
+                FAQ
+            </a>
+        </div>
+    </div>
+</div>

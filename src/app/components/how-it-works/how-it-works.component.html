@@ -1,0 +1,99 @@
+<div class="min-h-screen bg-[#1a202c] text-[#e5e7eb] px-4 sm:px-6 lg:px-8 py-12">
+    <div class="max-w-4xl mx-auto">
+        <header class="text-center mb-12">
+            <h1 class="text-4xl sm:text-5xl font-extrabold text-[#f59e0b]">How It Works</h1>
+            <p class="text-lg sm:text-xl text-[#d1d5db] mt-4">
+                Learn how our AI Image Generator transforms your ideas into stunning visuals using advanced technology.
+            </p>
+        </header>
+
+        <main class="space-y-12">
+            <!-- Overview Section -->
+            <section id="overview">
+                <h2 class="text-2xl sm:text-3xl font-semibold text-[#facc15] mb-6">Overview</h2>
+                <p class="text-[#d1d5db]">
+                    Our AI Image Generator uses the powerful Pix-Art-Sigma Model via the MonsterAPI platform to convert
+                    your text prompts into visually captivating images. The process is simple, efficient, and highly
+                    customizable, ensuring your ideas come to life just as you envision them.
+                </p>
+            </section>
+
+            <!-- Step-by-Step Process -->
+            <section id="step-by-step">
+                <h2 class="text-2xl sm:text-3xl font-semibold text-[#facc15] mb-6">Step-by-Step Process</h2>
+                <div class="space-y-8">
+                    <div>
+                        <h3 class="text-lg font-semibold">1. Enter Your Prompt</h3>
+                        <p class="text-[#d1d5db] mt-2">
+                            Start by describing the image you want to generate. Be as detailed as possible to help the
+                            AI understand your vision. For example:
+                            <em>"A futuristic cityscape at sunset in a cyberpunk style."</em>
+                        </p>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-semibold">2. Choose Custom Options</h3>
+                        <p class="text-[#d1d5db] mt-2">
+                            Customize the output with options like aspect ratio, style, guidance scale, and negative
+                            prompts. These settings give you control over the final image.
+                        </p>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-semibold">3. Submit Your Prompt</h3>
+                        <p class="text-[#d1d5db] mt-2">
+                            Once you're satisfied with your inputs, hit the "Generate Image" button. The AI sends your
+                            prompt to the MonsterAPI, where it is processed using the Pix-Art-Sigma Model.
+                        </p>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-semibold">4. Fetch and View Results</h3>
+                        <p class="text-[#d1d5db] mt-2">
+                            After submitting, the API returns a <code>process_id</code>. Our system fetches the
+                            generated image using this ID and displays it in the output section for you to download or
+                            share.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Technical Details -->
+            <section id="technical-details">
+                <h2 class="text-2xl sm:text-3xl font-semibold text-[#facc15] mb-6">Technical Details</h2>
+                <div class="space-y-6">
+                    <div>
+                        <h3 class="text-lg font-semibold">API Endpoint</h3>
+                        <p class="text-[#d1d5db] mt-2">
+                            The AI Image Generator integrates with the MonsterAPI. Below is an example of how the API
+                            works:
+                        </p>
+                        <pre class="bg-[#1f2937] p-4 rounded-xl text-[#d1d5db] overflow-x-auto mt-4">
+                            {{ apiCode }}
+                          </pre>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-semibold">Input Requirements</h3>
+                        <p class="text-[#d1d5db] mt-2">
+                            The API requires a text prompt as input. Optional parameters like safe filters and image
+                            styles can enhance your results.
+                        </p>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-semibold">Fetch Results</h3>
+                        <p class="text-[#d1d5db] mt-2">
+                            After submitting a prompt, you'll receive a <code>process_id</code>. Use the Fetch Results
+                            API to retrieve the generated image.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Start Creating -->
+            <section id="get-started">
+                <h2 class="text-2xl sm:text-3xl font-semibold text-[#facc15] mb-6">Get Started</h2>
+                <p class="text-[#d1d5db]">
+                    Ready to bring your ideas to life? Go back to the <a href="/"
+                        class="text-[#f59e0b] hover:underline">Home Page</a> and start generating stunning images today!
+                </p>
+            </section>
+        </main>
+    </div>
+</div>
