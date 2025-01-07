@@ -1,107 +1,154 @@
-<div class="min-h-screen bg-[#1a202c] text-[#e5e7eb] flex justify-center items-center px-4 sm:px-6 lg:px-8">
-    <div class="max-w-4xl w-full mx-auto p-8 sm:p-10 bg-opacity-20 backdrop-blur-lg rounded-3xl shadow-xl">
-        <header class="text-center">
-            <h1 class="text-4xl sm:text-5xl font-extrabold text-[#f59e0b]">AI Image Generator</h1>
-            <p class="text-lg sm:text-xl text-[#d1d5db] mt-4">
-                Transform your ideas into stunning visuals powered by AI.
-            </p>
-        </header>
+<div class="min-h-screen bg-[#1a202c] text-[#e5e7eb] flex justify-center items-center">
+    <div class="max-w-6xl w-full mx-auto p-10 bg-opacity-20 backdrop-blur-lg rounded-3xl shadow-xl">
+        <div class="text-center">
+            <h1 class="text-5xl font-extrabold text-[#f59e0b]">AI Image Generator</h1>
+            <p class="text-xl text-[#d1d5db] mt-4">Transform your ideas into stunning visuals powered by AI.</p>
+        </div>
 
-        <main class="flex flex-wrap justify-between items-start mt-12 gap-8">
-            <!-- Input Section -->
-            <section class="w-full lg:w-[48%] space-y-6">
+        <div class="flex flex-col md:flex-row justify-between items-start mt-12 space-y-8 md:space-y-0 md:space-x-12">
+            <div class="w-full md:w-1/2 space-y-6">
+                <!-- Updated prompt to textarea -->
                 <textarea [(ngModel)]="prompt" placeholder="Describe your image idea..."
-                    class="w-full p-4 bg-[#1f2937] border border-[#374151] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#facc15] text-[#e5e7eb]"
-                    rows="3" [disabled]="isLoading">
-                </textarea>
+                    class="w-full p-4 bg-[#1f2937] border border-[#374151] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#facc15] transition duration-300 text-[#e5e7eb]"
+                    rows="2" [disabled]="isLoading"></textarea>
 
-                <div class="space-y-4">
-                    <div class="flex justify-between items-center">
-                        <label for="aspectRatio" class="text-[#d1d5db] w-1/3">Aspect Ratio:</label>
-                        <select id="aspectRatio" [(ngModel)]="aspectRatio"
-                            class="w-2/3 p-3 bg-[#1f2937] border border-[#374151] rounded-xl focus:ring-2 focus:ring-[#facc15] text-[#e5e7eb]"
-                            [disabled]="isLoading">
-                            <option value="square">Square</option>
-                            <option value="landscape">Landscape</option>
-                            <option value="portrait">Portrait</option>
-                        </select>
-                    </div>
+                <div class="flex justify-between items-center">
+                    <label for="aspectRatio" class="text-[#d1d5db] w-1/3 text-left">Aspect Ratio:</label>
+                    <select id="aspectRatio" [(ngModel)]="aspectRatio"
+                        class="w-2/3 p-3 bg-[#1f2937] border border-[#374151] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#facc15] transition duration-300 text-[#e5e7eb]"
+                        [disabled]="isLoading">
+                        <option value="square">Square</option>
+                        <option value="landscape">Landscape</option>
+                        <option value="portrait">Portrait</option>
+                    </select>
+                </div>
 
-                    <div class="flex justify-between items-center">
-                        <label for="style" class="text-[#d1d5db] w-1/3">Style:</label>
-                        <select id="style" [(ngModel)]="style"
-                            class="w-2/3 p-3 bg-[#1f2937] border border-[#374151] rounded-xl focus:ring-2 focus:ring-[#facc15] text-[#e5e7eb]"
-                            [disabled]="isLoading">
-                            <option value="anime">Anime</option>
-                            <option value="realistic">Realistic</option>
-                            <option value="fantasy">Fantasy</option>
-                        </select>
-                    </div>
+                <div class="flex justify-between items-center">
+                    <label for="style" class="text-[#d1d5db] w-1/3 text-left">Style:</label>
+                    <select id="style" [(ngModel)]="style"
+                        class="w-2/3 p-3 bg-[#1f2937] border border-[#374151] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#facc15] transition duration-300 text-[#e5e7eb]"
+                        [disabled]="isLoading">
+                        <option value="anime">Anime</option>
+                        <option value="realistic">Realistic</option>
+                        <option value="fantasy">Fantasy</option>
+                    </select>
+                </div>
 
-                    <div class="flex justify-between items-center">
-                        <label for="guidanceScale" class="text-[#d1d5db] w-1/3">Guidance Scale:</label>
-                        <div class="w-2/3 flex items-center">
-                            <input type="range" id="guidanceScale" [(ngModel)]="guidanceScale" min="1" max="20"
-                                class="w-full" [disabled]="isLoading" />
-                            <span class="ml-3 text-[#d1d5db]">{{ guidanceScale }}</span>
-                        </div>
-                    </div>
-
-                    <div class="flex justify-between items-center">
-                        <label for="negprompt" class="text-[#d1d5db] w-1/3">Negative Prompt:</label>
-                        <textarea id="negprompt" [(ngModel)]="negprompt"
-                            placeholder="Describe what to avoid in the image..."
-                            class="w-2/3 p-3 bg-[#1f2937] border border-[#374151] rounded-xl focus:ring-2 focus:ring-[#facc15] text-[#e5e7eb]"
-                            rows="2" [disabled]="isLoading">
-                        </textarea>
-                    </div>
-
-                    <button (click)="generateNegativePrompt()" [disabled]="isLoading"
-                        class="w-full py-2 bg-[#facc15] text-[#1a202c] font-semibold rounded-xl hover:bg-[#f59e0b] transition disabled:bg-[#374151]">
-                        Generate Prompt
-                    </button>
-
-                    <div class="flex justify-between items-center">
-                        <label for="steps" class="text-[#d1d5db] w-1/3">Steps:</label>
-                        <input type="number" id="steps" [(ngModel)]="steps" min="1" max="50"
-                            class="w-2/3 p-3 bg-[#1f2937] border border-[#374151] rounded-xl focus:ring-2 focus:ring-[#facc15] text-[#e5e7eb]"
+                <div class="flex justify-between items-center">
+                    <label for="guidanceScale" class="text-[#d1d5db] w-1/3 text-left">Guidance Scale:</label>
+                    <div class="w-2/3 flex items-center">
+                        <input type="range" id="guidanceScale" [(ngModel)]="guidanceScale" min="1" max="20"
+                            class="w-full bg-transparent appearance-none rounded-lg focus:outline-none focus:ring-2 focus:ring-[#facc15]"
                             [disabled]="isLoading" />
+                        <span class="ml-3 text-[#d1d5db]">{{ guidanceScale }}</span>
                     </div>
                 </div>
 
+                <!-- New negprompt field -->
+                <div class="flex justify-between items-center">
+                    <label for="negprompt" class="text-[#d1d5db] w-1/3 text-left">Prompt:</label>
+
+                    <textarea id="negprompt" [(ngModel)]="negprompt"
+                        placeholder="Describe what to avoid in the image..."
+                        class="w-2/3 p-3 bg-[#1f2937] border border-[#374151] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#facc15] transition duration-300 text-[#e5e7eb]"
+                        rows="2" [disabled]="isLoading"></textarea>
+                </div>
+
+                <!-- Button to trigger negative prompt generation manually -->
+                <button (click)="generateNegativePrompt()" [disabled]="isLoading"
+                    class="mt-4 px-6 py-2 bg-[#facc15] text-[#1a202c] font-semibold rounded-xl transition duration-300 hover:bg-[#f59e0b]">
+                    Generate Prompt
+                </button>
+
+
+                <!-- New steps field -->
+                <div class="flex justify-between items-center">
+                    <label for="steps" class="text-[#d1d5db] w-1/3 text-left">Steps:</label>
+                    <input type="number" id="steps" [(ngModel)]="steps" min="1" max="50"
+                        class="w-2/3 p-3 bg-[#1f2937] border border-[#374151] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#facc15] transition duration-300 text-[#e5e7eb]"
+                        [disabled]="isLoading" />
+                </div>
+
                 <button (click)="onGenerateImage()" [disabled]="isLoading || !prompt.trim()"
-                    class="w-full py-4 text-[#1a202c] font-semibold bg-[#facc15] rounded-xl hover:bg-[#f59e0b] transition disabled:bg-[#374151]">
+                    class="w-full py-4 text-[#1a202c] font-semibold bg-[#facc15] hover:bg-[#f59e0b] rounded-xl transition duration-300 disabled:bg-[#374151] disabled:text-[#71717a]">
                     {{ isLoading ? 'Generating...' : 'Generate Image' }}
                 </button>
-            </section>
+            </div>
 
-            <!-- Output Section -->
-            <section class="w-full lg:w-[48%] space-y-6">
+            <div class="w-full md:w-1/2 space-y-8">
                 <ng-container *ngIf="!generatedImage; else imageBlock">
-                    <div class="border-4 border-dashed border-[#374151] p-16 text-center text-[#71717a] rounded-xl">
+                    <div
+                        class="border-4 border-dashed border-[#374151] p-16 text-center text-[#71717a] rounded-xl flex justify-center items-center h-full">
                         <p>Your generated image will appear here</p>
                     </div>
                 </ng-container>
 
+
                 <ng-template #imageBlock>
                     <div class="relative">
                         <img [src]="generatedImage" alt="AI Generated Image"
-                            class="w-full rounded-xl shadow-xl object-cover" />
+                            class="w-full rounded-2xl shadow-xl transition duration-300 object-cover max-h-[500px]" />
 
-                        <div class="absolute bottom-5 left-1/2 transform -translate-x-1/2 flex gap-4">
-                            <a [href]="generatedImage" download="AI_Image" class="icon-btn bg-[#10b981]">
-                                <i class="fas fa-download" aria-hidden="true"></i><span class="sr-only">Download</span>
+                        <!-- New section for icons below the image -->
+                        <div class="absolute bottom-5 left-1/2 transform -translate-x-1/2 flex space-x-6">
+                            <!-- Download Icon -->
+                            <a [href]="generatedImage" download="AI_Image"
+                                class="px-4 py-2 bg-[#10b981] hover:bg-[#059669] text-[#1a202c] rounded-full transition duration-300">
+                                <i class="fas fa-download"></i> <!-- Font Awesome Download Icon -->
                             </a>
+
+                            <!-- Twitter Icon -->
                             <a href="https://twitter.com/intent/tweet?url={{ generatedImage }}" target="_blank"
-                                class="icon-btn bg-[#1DA1F2]">
-                                <i class="fab fa-twitter" aria-hidden="true"></i><span class="sr-only">Share on
-                                    Twitter</span>
+                                class="px-4 py-2 bg-[#1DA1F2] hover:bg-[#1991D0] text-[#ffffff] rounded-full transition duration-300">
+                                <i class="fab fa-twitter"></i> <!-- Font Awesome Twitter Icon -->
                             </a>
-                            <!-- Add other social icons as needed -->
+
+                            <!-- Facebook Icon -->
+                            <a href="https://www.facebook.com/sharer/sharer.php?u={{ generatedImage }}" target="_blank"
+                                class="px-4 py-2 bg-[#1877F2] hover:bg-[#155FBB] text-[#ffffff] rounded-full transition duration-300">
+                                <i class="fab fa-facebook-f"></i> <!-- Font Awesome Facebook Icon -->
+                            </a>
+
+                            <!-- LinkedIn Icon -->
+                            <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ generatedImage }}"
+                                target="_blank"
+                                class="px-4 py-2 bg-[#0077B5] hover:bg-[#005F8D] text-[#ffffff] rounded-full transition duration-300">
+                                <i class="fab fa-linkedin-in"></i> <!-- Font Awesome LinkedIn Icon -->
+                            </a>
+
+                            <!-- WhatsApp Icon -->
+                            <a href="https://wa.me/?text={{ generatedImage }}" target="_blank"
+                                class="px-4 py-2 bg-[#25D366] hover:bg-[#128C7E] text-[#ffffff] rounded-full transition duration-300">
+                                <i class="fab fa-whatsapp"></i> <!-- Font Awesome WhatsApp Icon -->
+                            </a>
+
+                            <!-- Pinterest Icon -->
+                            <a href="https://pinterest.com/pin/create/button/?url={{ generatedImage }}" target="_blank"
+                                class="px-4 py-2 bg-[#E60023] hover:bg-[#D4001C] text-[#ffffff] rounded-full transition duration-300">
+                                <i class="fab fa-pinterest-p"></i> <!-- Font Awesome Pinterest Icon -->
+                            </a>
+
+                            <!-- Reddit Icon -->
+                            <a href="https://www.reddit.com/submit?url={{ generatedImage }}" target="_blank"
+                                class="px-4 py-2 bg-[#FF4500] hover:bg-[#E03E00] text-[#ffffff] rounded-full transition duration-300">
+                                <i class="fab fa-reddit"></i> <!-- Font Awesome Reddit Icon -->
+                            </a>
                         </div>
                     </div>
                 </ng-template>
-            </section>
-        </main>
+
+
+                <div *ngIf="isLoading && !generatedImage" class="flex flex-col items-center space-y-2">
+                    <div
+                        class="w-16 h-16 border-4 border-transparent border-t-4 border-[#facc15] rounded-full animate-spin">
+                    </div>
+                    <p class="text-[#d1d5db]">Generating your masterpiece... Hang tight!</p>
+                </div>
+                <div class="w-96">
+                    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4882959606926736"
+                        data-ad-slot="1234567890" data-ad-format="auto"></ins>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
