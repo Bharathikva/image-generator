@@ -4,4 +4,35 @@
 @tailwind components;
 @tailwind utilities;
 
+  /* General scrollbar styles for WebKit browsers */
+::-webkit-scrollbar {
+    width: 12px; /* Width of the scrollbar */
+    height: 12px; /* Height of the scrollbar */
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background-color: #f59e0b; /* Thumb color */
+    border-radius: 10px; /* Rounded edges for the thumb */
+    border: 3px solid #1a202c; /* Add a border for a padded look */
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: #facc15; /* Thumb color on hover */
+  }
+  
+  ::-webkit-scrollbar-track {
+    background-color: #2d3748; /* Track color */
+    border-radius: 10px; /* Rounded edges for the track */
+  }
+  
+  /* Scrollbar styles for Firefox */
+  * {
+    scrollbar-width: thin; /* Make the scrollbar thinner */
+    scrollbar-color: #f59e0b #2d3748; /* Thumb color and track color */
+  }
+  
+  /* Optional: Adjust scroll behavior globally */
+  html {
+    scroll-behavior: smooth; /* Smooth scrolling */
+  }
   
